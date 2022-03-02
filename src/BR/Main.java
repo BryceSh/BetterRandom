@@ -1,5 +1,11 @@
 package BR;
 
+/*
+
+This is sort of a template class to show how to use all the methods of BetterRandom
+
+ */
+
 public class Main {
 
     public static void main(String[] args) {

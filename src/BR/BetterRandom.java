@@ -14,11 +14,34 @@ import java.util.Random;
 
 public class BetterRandom {
 
-    double booleanTruePercentage = 0.5;
-    boolean flipFlopValue = false;
-    int diceSides = 6; // This is the default dice sides. You can change with CLASS.setDiceSides(SIDES);
+    // Fixed public and private declaration
+    private double booleanTruePercentage = 0.5;
+    private boolean flipFlopValue = false;
+    private int diceSides = 6; // This is the default dice sides. You can change with CLASS.setDiceSides(SIDES);
+    private int seed;
+    private static int MAX_RANDOM_INT = 999999; // Max values a random int can generate too
+
 
     Random rand = new Random();
+
+    public BetterRandom() {
+        this.seed = this.randomInt(this.randomInt(100,999), this.randomInt(1000, 9999)); // generate a random seed
+    }
+
+    public int getSeed() {
+        if (seed == 0) {
+            return -1; // Will return -1 if seed is not set
+        } else {
+            return seed;
+        }
+    }
+
+    public int randomIntSeed() {
+        System.out.println("Seed: " + this.seed);
+        int randomNumber = this.randomInt(this.seed, (this.seed * 2) / (this.seed % 3) + 1 );
+        this.seed = this.seed + this.randomInt(1000, 9999);
+        return randomNumber;
+    }
 
     public int randomInt(int min, int max) {
         int calculatedRange = (max - min + 1) + min;
@@ -27,6 +50,11 @@ public class BetterRandom {
             randomNumber = rand.nextInt(calculatedRange);
         } while(randomNumber == min -1 || randomNumber == max + 1); // This is a check to make sure that the number generated is not less than the range
         return randomNumber;
+    }
+
+    // Added support for 0-arity method for randomInt
+    public int randomInt() {
+        return this.randomInt(0, MAX_RANDOM_INT);
     }
 
     public boolean randomBoolean() {

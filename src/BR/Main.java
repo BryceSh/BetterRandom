@@ -43,6 +43,13 @@ public class Main {
         System.out.println();
         System.out.println(random.randomDouble());
 
+        System.out.println();
+        System.out.println(random.randomIntSeed());
+        System.out.println(random.randomIntSeed());
+        System.out.println(random.randomIntSeed());
+        System.out.println(random.randomIntSeed());
+        System.out.println(random.randomIntSeed());
+        System.out.println(random.randomIntSeed());
 
     }
 
